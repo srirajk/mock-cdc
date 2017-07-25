@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path = "/demo") // This means URL's start with /demo (after
@@ -58,6 +59,7 @@ public class MainController {
 
 	@Async
 	@GetMapping(path = "/start")
+	//@ResponseStatus()
 	public void startLoading() throws InterruptedException {
 		logger.info("loading data.");
 		trigger.set(true);
