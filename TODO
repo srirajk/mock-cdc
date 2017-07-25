@@ -1,0 +1,16 @@
+Docker:
+    create named volumes on docker-compose for mysql, cassandra.
+    add build commands as we need to build images if they do not exist.
+
+NIFI:
+    create nifi templates folder underneath the repository.
+    use nifi api deploy to push remotes instead of manually importing templates through nifi UI (https://github.com/aperepel/nifi-api-deploy)
+    need to create an entrypoint file to download sql connector for nifi.
+
+Demo-service:
+    create an entrypoint file to start the service.
+
+
+HDP:
+    inorder to write data to Hive, add HDP to docker project.
+    edit nifi flow to write data over to hive(parquet format) in parallel to cassandra.
