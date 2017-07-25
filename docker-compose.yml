@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+
+  mysql:
+    image: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - /Users/raj/Desktop/data-testing/sql:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=test
+
+  zoo:
+    image: skadimisetty/zk
+    ports:
+      - "2181:2181"
+
+  kafka:
+    #build:
+      #context: ./kafka
+      #dockerfile: Dockerfile
+    image: skadimisetty/kafka
+    ports:
+      - "9092:9092"
+    environment:
+         #brokerId: kafka-1
+         zkQuorum: zoo:2181
+    depends_on:
+      - zoo
+    #volumes:
+    #  - /var/run/docker.sock:/var/run/docker.sock
+
+  cassandra:
+    image: cassandra
+    #image: spotify/cassandra
+
+  nifi:
+    image: skadimisetty/nifi
+    ports:
+      - "9000:8080"
+    depends_on:
+      - zoo
+      - kafka
+      - mysql
+      - cassandra
