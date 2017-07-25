@@ -62,6 +62,8 @@ services:
       context: ./demo-java/spring-data-demo
       dockerfile: dockerfile
     image: skadimisetty/java-rest-ws
+    #volumes:
+    #  - $PWD/demo-java/spring-data-demo:/demo
     ports:
       - "8080:8080"
     depends_on:
