@@ -1,5 +1,9 @@
 Script:
     write a script to automate the entire process.
+    1. ensure Docker exists on the machine.(make sure the memory is high on docker machine.)
+    2. run docker-compose
+    3. push nifi template to nifi.
+    4. run a script to insert data to Mysql.
 
 Docker:
     create named volumes on docker-compose for mysql, cassandra.
