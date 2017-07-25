@@ -210,6 +210,7 @@
         </entry>
         <entry>
           <key>Password</key>
+          <value>${MYSQL_PSSWRD}</value>
         </entry>
         <entry>
           <key>Max Wait Time</key>
