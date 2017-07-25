@@ -1,3 +1,6 @@
+Script:
+    write a script to automate the entire process.
+
 Docker:
     create named volumes on docker-compose for mysql, cassandra.
     add build commands as we need to build images if they do not exist.
