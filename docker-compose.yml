@@ -7,20 +7,25 @@ services:
     ports:
       - "3306:3306"
     volumes:
-      - /Users/raj/Desktop/data-testing/sql:/var/lib/mysql
+      - sqlData:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=my-secret-pw
       - MYSQL_DATABASE=test
 
   zoo:
+    build:
+      context: ./zookeeper
+      dockerfile: Dockerfile
     image: skadimisetty/zk
     ports:
       - "2181:2181"
+    volumes:
+      #- zooData:
 
   kafka:
-    #build:
-      #context: ./kafka
-      #dockerfile: Dockerfile
+    build:
+      context: ./kafka
+      dockerfile: Dockerfile
     image: skadimisetty/kafka
     ports:
       - "9092:9092"
@@ -29,14 +34,19 @@ services:
          zkQuorum: zoo:2181
     depends_on:
       - zoo
-    #volumes:
+    volumes:
+      - kafkaLog:/kafka/kafka_2.12-0.10.2.1/log
     #  - /var/run/docker.sock:/var/run/docker.sock
 
   cassandra:
     image: cassandra
-    #image: spotify/cassandra
+    volumes:
+      - cassandraData:/var/lib/cassandra
 
   nifi:
+    build:
+      context: ./nifi
+      dockerfile: Dockerfile
     image: skadimisetty/nifi
     ports:
       - "9000:8080"
@@ -45,3 +55,21 @@ services:
       - kafka
       - mysql
       - cassandra
+
+  demo-service:
+    build:
+      context: ./demo-java/spring-data-demo
+      dockerfile: dockerfile
+    image: skadimisetty/java-rest-ws
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    restart: always      
+
+
+
+volumes:
+  sqlData:
+  cassandraData:
+  kafkaLog:
