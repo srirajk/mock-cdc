@@ -60,7 +60,7 @@ services:
   demo-service:
     build:
       context: ./demo-java/spring-data-demo
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     image: skadimisetty/java-rest-ws
     #volumes:
     #  - $PWD/demo-java/spring-data-demo:/demo
