@@ -46,7 +46,7 @@ public class MainController {
 
 	private void kickStart() {
 		while (trigger.get()) {
-			String name = RandomStringUtils.randomAscii(6);
+			String name = RandomStringUtils.randomAlphabetic(6);
 			String email = new StringBuffer(name).append("@gmail.com").toString();
 			addNewUser(name, email);
 		}
