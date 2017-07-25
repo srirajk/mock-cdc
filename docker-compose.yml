@@ -42,6 +42,7 @@ services:
     image: cassandra
     volumes:
       - cassandraData:/var/lib/cassandra
+      - $PWD/cassandra:/scripts
 
   nifi:
     build:
