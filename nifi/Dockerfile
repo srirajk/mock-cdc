@@ -18,7 +18,7 @@
 
 FROM openjdk:8
 #FROM maven:3.5-jdk-8-alpine
-MAINTAINER Apache NiFi <dev@nifi.apache.org>
+
 
 ARG UID=1000
 ARG GID=50
@@ -56,7 +56,12 @@ RUN curl -fSL $NIFI_BINARY_URL -o $NIFI_BASE_DIR/nifi-$NIFI_VERSION-bin.tar.gz \
 	&& tar -xvzf $NIFI_BASE_DIR/nifi-$NIFI_VERSION-bin.tar.gz -C $NIFI_BASE_DIR \
 	&& rm $NIFI_BASE_DIR/nifi-$NIFI_VERSION-bin.tar.gz
 
-ADD jars/ $NIFI_HOME/lib
+#ADD jars/ $NIFI_HOME/lib
+
+COPY Entrypoint.sh /
+
+RUN chown nifi:nifi /Entrypoint.sh && \
+    chmod u+x /Entrypoint.sh
 
 RUN chown -R nifi:nifi $NIFI_HOME
 
@@ -69,4 +74,7 @@ EXPOSE 8181
 USER nifi
 
 # Startup NiFi
-CMD $NIFI_HOME/bin/nifi.sh run
+
+ENTRYPOINT ["/Entrypoint.sh"]
+
+#CMD $NIFI_HOME/bin/nifi.sh run
