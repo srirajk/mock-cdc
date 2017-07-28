@@ -9,7 +9,8 @@ Replication of data between mysql and cassandra/hive using nifi.
 
 ### Setup ###
 
-Make sure to install docker and docker-compose or use http://labs.play-with-docker.com/
+Make sure to install docker and docker-compose or use http://labs.play-with-docker.com/.
+ Note: make sure the memory is high on docker machine.
 
 clone the repo.
 
