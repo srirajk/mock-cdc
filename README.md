@@ -16,17 +16,18 @@ clone the repo.
 git clone https://sriraj10@bitbucket.org/skadimisetty/mock-cdc.git
 
 sh startScript.sh
-
-the above command will setup the environment.
-
-upload the templates from mock-cdc/nifi/nifi-templates to nifi. 
-start the flow.
+  the above command will setup the environment.
 
 sh curlCommands.sh 
-the above command will trigger and load data into mysql for 10 sec and then stop the process as this is only for a test.
+  the above command will trigger and load data into mysql for 10 sec and then stop the process as this is only for a test.
+  it also imports templates into nifi.
+
+validate you are able to see 2 templates on nifi.
+
+screens to follow on nifi.
 
 if you refresh your screen on nifi, you should be able to see data flowing through.
 
-Note: I am in the process of automating the template upload to nifi.
+Note: automated the process to import templates into nifi but still need to work on building a script to go ahead and instantiate the template along with configuring the controller services and controllers.
 
 
