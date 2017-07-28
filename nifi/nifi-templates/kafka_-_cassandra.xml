@@ -1,4 +1,4 @@
-<?xml version="1.0" ?>
+<templateEntity>
 <template encoding-version="1.1">
   <description>read from kafka and insert to cassandra.</description>
   <groupId>2f8496bc-015d-1000-6cea-7121c87c1d7a</groupId>
@@ -1584,3 +1584,4 @@
   </snippet>
   <timestamp>07/11/2017 04:16:52 UTC</timestamp>
 </template>
+</templateEntity>
